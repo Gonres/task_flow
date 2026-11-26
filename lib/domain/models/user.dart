@@ -1,0 +1,6 @@
+/// A signed-in TaskFlow user, as returned by an authentication backend.
+class const User({required this.id, required this.email, required this.name}) {
+  final String id;
+  final String email;
+  final String name;
+}
