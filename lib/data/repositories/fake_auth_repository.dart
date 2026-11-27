@@ -36,4 +36,17 @@ class FakeAuthRepository implements AuthRepository {
       name: 'Aisha',
     );
   }
+
+  /// Returns a new signed-in user named [name], as if email confirmation were
+  /// turned off. Doesn't remember the account, so signing in later still
+  /// needs `password123`.
+  @override
+  Future<User?> signUpWithEmail({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    await Future<void>.delayed(delay);
+    return User(id: 'user-2', email: email, name: name);
+  }
 }

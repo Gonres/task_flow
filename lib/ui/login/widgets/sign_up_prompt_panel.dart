@@ -1,8 +1,12 @@
 import 'package:material_ui/material_ui.dart';
 
+import '../../sign_up/widgets/sign_up_screen.dart';
+
 /// "New to TaskFlow?" prompt with a button that leads to account creation.
 class SignUpPromptPanel extends StatelessWidget {
   const new({super.key});
+
+  static const Key createAccountButtonKey = Key('loginCreateAccountButton');
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +21,10 @@ class SignUpPromptPanel extends StatelessWidget {
           style: text.bodyMedium?.copyWith(color: colors.onSurfaceVariant),
         ),
         TextButton(
-          // TODO: navigate to sign-up screen.
-          onPressed: () {},
+          key: createAccountButtonKey,
+          onPressed: () {
+            Navigator.of(context).pushNamed(SignUpScreen.routeName);
+          },
           style: TextButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 4),
           ),

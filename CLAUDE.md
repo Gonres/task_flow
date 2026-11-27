@@ -8,6 +8,9 @@ These guidelines explain the code design rules.
 * DO follow the [Dart package layout
   conventions](https://dart.dev/tools/pub/package-layout).
 * DO follow SOLID principles. Write short functions and compact classes.
+* DO follow MVVM principles.
+* DO follow flutter documentation - app architecture recommendetations 
+  (https://docs.flutter.dev).
 * DON'T introduce large new external dependencies such as frameworks.
 
 ### Naming

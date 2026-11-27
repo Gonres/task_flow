@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../../data/repositories/auth_exception.dart';
 import '../../../data/repositories/auth_repository.dart';
 import '../../../domain/models/user.dart';
+import '../../core/validation/validate_email.dart';
 
 /// Holds the login screen's state and logic. Knows nothing about widgets, so
 /// it can be unit tested without pumping a widget tree.
@@ -10,8 +11,6 @@ class LoginViewModel extends ChangeNotifier {
   new({required this._authRepository});
 
   final AuthRepository _authRepository;
-
-  static final RegExp _emailPattern = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   String _email = '';
   String _password = '';
@@ -28,7 +27,7 @@ class LoginViewModel extends ChangeNotifier {
 
   /// Validation error of the email field. Null until the user has tried to
   /// submit, so that the form doesn't show errors before the first attempt.
-  String? get emailError => _submitted ? _validateEmail(_email) : null;
+  String? get emailError => _submitted ? validateEmail(_email) : null;
 
   /// Validation error of the password field. Null until the user has tried to
   /// submit, so that the form doesn't show errors before the first attempt.
@@ -65,8 +64,7 @@ class LoginViewModel extends ChangeNotifier {
       return null;
     }
     _submitted = true;
-    if (_validateEmail(_email) != null ||
-        _validatePassword(_password) != null) {
+    if (validateEmail(_email) != null || _validatePassword(_password) != null) {
       notifyListeners();
       return null;
     }
@@ -105,18 +103,6 @@ class LoginViewModel extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
-  }
-
-  /// Returns the message to show under the email field, or null when [email]
-  /// is a non-empty, valid email address.
-  static String? _validateEmail(String email) {
-    if (email.isEmpty) {
-      return 'Enter your email';
-    }
-    if (!_emailPattern.hasMatch(email)) {
-      return 'Enter a valid email';
-    }
-    return null;
   }
 
   /// Returns the message to show under the password field, or null when

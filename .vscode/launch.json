@@ -8,6 +8,7 @@
             "name": "task_flow_linux",
             "request": "launch",
             "type": "dart",
+            "toolArgs": ["--dart-define-from-file=supabase.json"],
             "env": {
                 "GDK_BACKEND": "x11"
             }
@@ -15,18 +16,21 @@
         {
             "name": "task_flow",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "toolArgs": ["--dart-define-from-file=supabase.json"]
         },
         {
             "name": "task_flow (profile mode)",
             "request": "launch",
             "type": "dart",
+            "toolArgs": ["--dart-define-from-file=supabase.json"],
             "flutterMode": "profile"
         },
         {
             "name": "task_flow (release mode)",
             "request": "launch",
             "type": "dart",
+            "toolArgs": ["--dart-define-from-file=supabase.json"],
             "flutterMode": "release"
         }
     ]

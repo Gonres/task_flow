@@ -4,9 +4,10 @@ import 'data/repositories/auth_repository.dart';
 import 'ui/core/theme/app_theme.dart';
 import 'ui/login/view_model/login_view_model.dart';
 import 'ui/login/widgets/login_screen.dart';
+import 'ui/sign_up/widgets/sign_up_screen.dart';
 
 /// Root of the app. Applies the light and dark theme and opens the login
-/// screen, which signs in through [authRepository].
+/// screen. Login and sign-up both go through [authRepository].
 class TaskFlowApp extends StatefulWidget {
   const new({super.key, required this.authRepository});
 
@@ -37,6 +38,11 @@ class _TaskFlowAppState extends State<TaskFlowApp> {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       home: LoginScreen(viewModel: _loginViewModel),
+      routes: <String, WidgetBuilder>{
+        SignUpScreen.routeName: (BuildContext context) {
+          return SignUpScreen(authRepository: widget.authRepository);
+        },
+      },
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:material_ui/material_ui.dart';
 
 import '../../../domain/models/user.dart';
+import '../../core/widgets/progress_filled_button.dart';
 import '../view_model/login_view_model.dart';
 import 'auth_standalone_field.dart';
 import 'password_visibility_button.dart';
 import 'show_signed_in_message.dart';
-import 'sign_in_button.dart';
 
 /// Email and password fields with the sign-in button. Shows field validation
 /// errors and the error of the last sign-in attempt from [viewModel].
@@ -72,8 +72,9 @@ class LoginFormPanel extends StatelessWidget {
             style: text.bodyMedium?.copyWith(color: colors.error),
           ),
         const SizedBox(height: 12),
-        SignInButton(
+        ProgressFilledButton(
           key: signInButtonKey,
+          label: 'Sign in',
           isLoading: viewModel.isLoading,
           onPressed: () => _signIn(context),
         ),
